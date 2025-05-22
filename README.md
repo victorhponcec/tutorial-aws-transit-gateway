@@ -10,7 +10,7 @@ The architecture will consist of three VPCs interconnected with a Transit Gatewa
 
 | VPC Name | VPC CIDR Block | Subnet Name    | Subnet CIDR Block |
 |----------|----------------|----------------|--------------------|
-| VPCA     | 10.111.0.0/16    | vpcA-private-1 | 10.111.1.0/24        |
+| VPCA     | 10.111.0.0/16    | vpcA-public-1 | 10.111.1.0/24        |
 | VPCB     | 10.112.0.0/16    | vpcB-private-1 | 10.112.1.0/24        |
 | VPCC     | 10.113.0.0/16    | vpcC-private-1 | 10.113.1.0/24        |
 
@@ -428,3 +428,26 @@ terraform apply
 ```
 
 ## Testing
+
+You can go to the AWS Console > VPC, and verify that all resources have been created.
+
+### VPCs:
+![vpcs](vpcs.png)
+### Subnets:
+![subnets](subnets.png)
+### Route Tables:
+![route_tables](route_tables.png)
+### Transit Gateway:
+![tgw](tgw.png)
+### TGW Attachments:
+![tgw_attachment](tgw_attachments.png)
+### TGW Route Tables:
+![tgw_routes](tgw_route_table.png)
+
+When you ran apply, there were outputs showing the IPs of our resources. Take the public IP from our EC2 instance in VPCA and ssh into it with the command "ssh -i AWSKeySSH.pem ec2-user@<PUBLIC_IP>. Make sure to be placed in the main directory where our pem file is. 
+
+![outputs](outputs.png)
+
+To conclude, from our EC2 intance in VPCA, we should be able to ping and reach the instances in VPCB and VPCC
+
+![ping](oping.png)

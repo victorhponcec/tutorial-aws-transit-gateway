@@ -9,14 +9,17 @@ provider "aws" {
 #VPCA
 resource "aws_vpc" "vpca" {
   cidr_block = "10.111.0.0/16"
+  tags = { Name = "VPCA"}
 }
 #VPCB
 resource "aws_vpc" "vpcb" {
   cidr_block = "10.112.0.0/16"
+  tags = { Name = "VPCB"}
 }
 #VPCC 
 resource "aws_vpc" "vpcc" {
   cidr_block = "10.113.0.0/16"
+  tags = { Name = "VPCC"}
 }
 
 #Subnet Public
@@ -24,19 +27,19 @@ resource "aws_subnet" "public_subnet_vpca" {
   vpc_id            = aws_vpc.vpca.id
   cidr_block        = "10.111.1.0/24"
   availability_zone = "us-east-1a"
-
+  tags = { Name = "vpcA-public-1"}
 }
 resource "aws_subnet" "private_subnet_vpcb" {
   vpc_id            = aws_vpc.vpcb.id
   cidr_block        = "10.112.1.0/24"
   availability_zone = "us-east-1a"
-
+  tags = { Name = "vpcB-private-1"}
 }
 resource "aws_subnet" "private_subnet_vpcc" {
   vpc_id            = aws_vpc.vpcc.id
   cidr_block        = "10.113.1.0/24"
   availability_zone = "us-east-1a"
-
+  tags = { Name = "vpcC-private-1"}
 }
 
 #Internet Gateway
@@ -60,6 +63,7 @@ resource "aws_route_table" "public_rtb_vpca" {
     cidr_block = "10.113.0.0/16" //route to VPCC through TGW
     gateway_id = aws_ec2_transit_gateway.tgw.id
   }
+  depends_on = [aws_ec2_transit_gateway.tgw]
 }
 #Public Route table - VPCB
 resource "aws_route_table" "public_rtb_vpcb" {
@@ -72,6 +76,7 @@ resource "aws_route_table" "public_rtb_vpcb" {
     cidr_block = "10.113.0.0/16" //route to VPCC through TGW
     gateway_id = aws_ec2_transit_gateway.tgw.id
   }
+  depends_on = [aws_ec2_transit_gateway.tgw]
 }
 #Public Route table - VPCC
 resource "aws_route_table" "public_rtb_vpcc" {
@@ -84,6 +89,7 @@ resource "aws_route_table" "public_rtb_vpcc" {
     cidr_block = "10.112.0.0/16" //route to VPCB through TGW
     gateway_id = aws_ec2_transit_gateway.tgw.id
   }
+  depends_on = [aws_ec2_transit_gateway.tgw]
 }
 
 #Create route table associations

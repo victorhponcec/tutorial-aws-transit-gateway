@@ -448,6 +448,8 @@ When you ran apply, there were outputs showing the IPs of our resources. Take th
 
 ![outputs](outputs.png)
 
-To conclude, from our EC2 intance in VPCA, we should be able to ping and reach the instances in VPCB and VPCC
+![ssh](ssh.png)
 
-![ping](oping.png)
+To conclude, from our EC2 intance in VPCA, we should be able to ping and reach the instances in VPCB and VPCC:
+
+![ping](ping.png)

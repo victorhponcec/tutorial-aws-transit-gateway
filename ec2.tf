@@ -9,15 +9,15 @@ resource "aws_instance" "amazon_linux_vpca" {
 }
 #EC2 Instances - VPCB
 resource "aws_instance" "amazon_linux_vpcb" {
-  ami                         = "ami-05576a079321f21f8"
-  instance_type               = "t2.micro"
-  security_groups             = [aws_security_group.ssh_vpcb.id]
-  subnet_id                   = aws_subnet.private_subnet_vpcb.id
+  ami             = "ami-05576a079321f21f8"
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.ssh_vpcb.id]
+  subnet_id       = aws_subnet.private_subnet_vpcb.id
 }
 #EC2 Instances - VPCC
 resource "aws_instance" "amazon_linux_vpcc" {
-  ami                         = "ami-05576a079321f21f8"
-  instance_type               = "t2.micro"
-  security_groups             = [aws_security_group.ssh_vpcc.id]
-  subnet_id                   = aws_subnet.private_subnet_vpcc.id
+  ami             = "ami-05576a079321f21f8"
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.ssh_vpcc.id]
+  subnet_id       = aws_subnet.private_subnet_vpcc.id
 }

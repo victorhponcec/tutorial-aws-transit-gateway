@@ -9,17 +9,17 @@ provider "aws" {
 #VPCA
 resource "aws_vpc" "vpca" {
   cidr_block = "10.111.0.0/16"
-  tags = { Name = "VPCA"}
+  tags       = { Name = "VPCA" }
 }
 #VPCB
 resource "aws_vpc" "vpcb" {
   cidr_block = "10.112.0.0/16"
-  tags = { Name = "VPCB"}
+  tags       = { Name = "VPCB" }
 }
 #VPCC 
 resource "aws_vpc" "vpcc" {
   cidr_block = "10.113.0.0/16"
-  tags = { Name = "VPCC"}
+  tags       = { Name = "VPCC" }
 }
 
 #Subnet Public
@@ -27,19 +27,19 @@ resource "aws_subnet" "public_subnet_vpca" {
   vpc_id            = aws_vpc.vpca.id
   cidr_block        = "10.111.1.0/24"
   availability_zone = "us-east-1a"
-  tags = { Name = "vpcA-public-1"}
+  tags              = { Name = "vpcA-public-1" }
 }
 resource "aws_subnet" "private_subnet_vpcb" {
   vpc_id            = aws_vpc.vpcb.id
   cidr_block        = "10.112.1.0/24"
   availability_zone = "us-east-1a"
-  tags = { Name = "vpcB-private-1"}
+  tags              = { Name = "vpcB-private-1" }
 }
 resource "aws_subnet" "private_subnet_vpcc" {
   vpc_id            = aws_vpc.vpcc.id
   cidr_block        = "10.113.1.0/24"
   availability_zone = "us-east-1a"
-  tags = { Name = "vpcC-private-1"}
+  tags              = { Name = "vpcC-private-1" }
 }
 
 #Internet Gateway
